@@ -32,8 +32,19 @@ LLM_MODEL="${FDB_LLM_MODEL:-qwen2.5:7b-instruct}"
 JUDGE_MODEL="${FDB_JUDGE_MODEL:-$LLM_MODEL}"
 
 echo "== 1/8 Python environment"
-python3 -m venv "$WORK/venv" 2>/dev/null || true
+if [[ ! -x "$WORK/venv/bin/python" ]]; then
+  mkdir -p "$WORK"
+  # Fail loudly: silencing this hides the real cause (usually a missing python3-venv)
+  # behind a confusing "activate: No such file or directory" on the next line.
+  python3 -m venv "$WORK/venv" || {
+    echo "Could not create a virtualenv at $WORK/venv."
+    echo "Install the venv module first, e.g.:  sudo apt-get install -y python3-venv"
+    exit 1
+  }
+fi
 source "$WORK/venv/bin/activate"
+python -c 'import sys; assert sys.version_info[:2] >= (3,10), sys.version' || {
+  echo "Python 3.10+ required; got $(python -V)"; exit 1; }
 pip install -q --upgrade pip
 pip install -q -r "$HERE/requirements.txt"
 

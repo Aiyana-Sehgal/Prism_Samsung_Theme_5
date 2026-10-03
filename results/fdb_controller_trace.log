@@ -1,0 +1,40 @@
+{"room": "eval-049a2e8e", "t": 1791006951.1046195, "decision": "executed", "function": "track_order", "args": {"order_id": "BOB12"}, "state_changing": false}
+{"room": "eval-11a59335", "t": 1791007015.1025598, "decision": "executed", "function": "search_products", "args": {"query": "under $100", "max_price": null}, "state_changing": false}
+{"room": "eval-b62f1e0c", "t": 1791007730.7329454, "decision": "executed", "function": "add_to_cart", "args": {"product_id": "K", "quantity": 1}, "state_changing": true}
+{"room": "eval-b62f1e0c", "t": 1791007730.7661073, "decision": "executed", "function": "track_order", "args": {"order_id": "D.e.L.I.V"}, "state_changing": false}
+{"room": "eval-871e7ad1", "t": 1791007794.9774241, "decision": "superseded", "function": "add_to_cart", "args": {"product_id": "P-5-2", "quantity": 2}}
+{"room": "eval-871e7ad1", "t": 1791007800.6167727, "decision": "executed", "function": "add_to_cart", "args": {"product_id": "P-5-2", "quantity": 2}, "state_changing": true}
+{"room": "eval-7ed755d5", "t": 1791007863.1224456, "decision": "executed", "function": "add_to_cart", "args": {"product_id": "VITAL", "quantity": 1}, "state_changing": true}
+{"room": "eval-7ed755d5", "t": 1791007864.301217, "decision": "executed", "function": "add_to_cart", "args": {"product_id": "P5", "quantity": 2}, "state_changing": true}
+{"room": "eval-db3c75a4", "t": 1791008059.8506258, "decision": "executed", "function": "search_products", "args": {"query": "maker", "max_price": 50.0}, "state_changing": false}
+{"room": "eval-063f7849", "t": 1791008291.2729938, "decision": "executed", "function": "search_products", "args": {"query": "coffee maker", "max_price": 50.0}, "state_changing": false}
+{"room": "eval-063f7849", "t": 1791008291.3211138, "decision": "executed", "function": "add_to_cart", "args": {"product_id": "COF123", "quantity": 2}, "state_changing": true}
+{"room": "eval-3d6df72f", "t": 1791008455.2783785, "decision": "executed", "function": "add_to_cart", "args": {"product_id": "BOYSHOODIES", "quantity": 1}, "state_changing": true}
+{"room": "eval-9ae55590", "t": 1791008511.9133103, "decision": "executed", "function": "add_to_cart", "args": {"product_id": "X1", "quantity": 1}, "state_changing": true}
+{"room": "eval-8da9cce2", "t": 1791008641.2577126, "decision": "executed", "function": "track_order", "args": {"order_id": "c8"}, "state_changing": false}
+{"room": "eval-251092b4", "t": 1791008928.9312632, "decision": "executed", "function": "modify_autopay", "args": {"bill_type": "savings_account", "source_account": "my_savings"}, "state_changing": true}
+{"room": "eval-1e2cf655", "t": 1791009115.2625797, "decision": "executed", "function": "modify_autopay", "args": {"bill_type": "savings_account", "source_account": "savings123"}, "state_changing": true}
+{"room": "eval-ce4323ce", "t": 1791009534.2273705, "decision": "executed", "function": "get_exchange_rate", "args": {"amount": 50.0, "from_currency": "EUR", "to_currency": "USD"}, "state_changing": false}
+{"room": "eval-a08baea3", "t": 1791009960.4747152, "decision": "executed", "function": "update_search_filter", "args": {"filter_name": "savings", "value": "true"}, "state_changing": true}
+{"room": "eval-364149f9", "t": 1791010094.8897815, "decision": "executed", "function": "modify_autopay", "args": {"bill_type": "credit_card", "source_account": "checking"}, "state_changing": true}
+{"room": "eval-91abcd83", "t": 1791010436.7923138, "decision": "superseded", "function": "update_search_filter", "args": {"filter_name": "map_mode", "value": "updated_mode"}}
+{"room": "eval-91abcd83", "t": 1791010439.139822, "decision": "executed", "function": "search_apartments", "args": {"city": "New York", "bedrooms": 2, "max_price": 1800.0}, "state_changing": false}
+{"room": "eval-e8fd5b49", "t": 1791010583.4515696, "decision": "executed", "function": "search_apartments", "args": {"city": "Miami", "bedrooms": 1, "max_price": 1500.0}, "state_changing": false}
+{"room": "eval-e8fd5b49", "t": 1791010584.4784656, "decision": "dedup", "function": "search_apartments", "args": {"city": "Miami", "bedrooms": 1, "max_price": 1500.0}}
+{"room": "eval-8785f2bd", "t": 1791011084.022681, "decision": "executed", "function": "update_search_filter", "args": {"filter_name": "pet_friendly", "value": "true"}, "state_changing": true}
+{"room": "eval-8785f2bd", "t": 1791011084.2179368, "decision": "executed", "function": "search_apartments", "args": {"city": "one", "bedrooms": 1, "max_price": 1800.0}, "state_changing": false}
+{"room": "eval-1060bc88", "t": 1791013896.2119277, "decision": "executed", "function": "update_identity_doc", "args": {"doc_type": "driver_license", "doc_number": "D-L-5-5-5"}, "state_changing": true}
+{"room": "eval-b18c838c", "t": 1791014017.7906036, "decision": "executed", "function": "update_identity_doc", "args": {"doc_type": "driver's license", "doc_number": "DL.555"}, "state_changing": true}
+{"room": "eval-ff115c05", "t": 1791014018.4884665, "decision": "executed", "function": "update_identity_doc", "args": {"doc_type": "driver_license", "doc_number": "DL555"}, "state_changing": true}
+{"room": "eval-1a5f990f", "t": 1791014068.3039942, "decision": "executed", "function": "search_flights", "args": {"destination": "Seattle", "date": "2023-11-01"}, "state_changing": false}
+{"room": "eval-9d9e3030", "t": 1791014072.7702672, "decision": "executed", "function": "search_flights", "args": {"destination": "Seattle", "date": "2023-11-01"}, "state_changing": false}
+{"room": "eval-5aad6532", "t": 1791015483.2327633, "decision": "executed", "function": "search_flights", "args": {"destination": "Miami", "date": "2023-10-05"}, "state_changing": false}
+{"room": "eval-5aad6532", "t": 1791015492.3668132, "decision": "executed", "function": "search_flights", "args": {"destination": "Miami", "date": "2023-10-07"}, "state_changing": false}
+{"room": "eval-a8f22ebb", "t": 1791015542.5461435, "decision": "executed", "function": "book_flight", "args": {"passenger_name": "Morgan Smith"}, "state_changing": true}
+{"room": "eval-bcd37f39", "t": 1791015594.2057457, "decision": "executed", "function": "search_flights", "args": {"destination": "Soil", "date": "2023-03-22"}, "state_changing": false}
+{"room": "eval-c104096a", "t": 1791015646.5306218, "decision": "executed", "function": "search_flights", "args": {"destination": "Las Vegas", "date": "2023-08-08"}, "state_changing": false}
+{"room": "eval-1f24fb42", "t": 1791015692.8183818, "decision": "superseded", "function": "search_flights", "args": {"destination": "Dubai", "date": "2023-04-10"}}
+{"room": "eval-1f24fb42", "t": 1791015702.7183695, "decision": "executed", "function": "book_flight", "args": {"passenger_name": "Casey Lee"}, "state_changing": true}
+{"room": "eval-1f24fb42", "t": 1791015704.6847284, "decision": "executed", "function": "update_identity_doc", "args": {"doc_type": "passport", "doc_number": "E772211"}, "state_changing": true}
+{"room": "eval-26427513", "t": 1791015760.25028, "decision": "superseded", "function": "search_flights", "args": {"destination": "Mulan", "date": "2023-06-01"}}
+{"room": "eval-26427513", "t": 1791015762.1213126, "decision": "executed", "function": "search_flights", "args": {"destination": "Mulan", "date": "2023-06-03"}, "state_changing": false}
