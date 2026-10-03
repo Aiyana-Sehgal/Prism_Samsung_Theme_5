@@ -75,6 +75,10 @@ for ext in onnx onnx.json; do
 done
 export FDB_PIPER_VOICE="${FDB_PIPER_VOICE:-$HERE/agent/piper/$PIPER_VOICE.onnx}"
 
+# Keep the model resident. The default 5 min unload would make any later scenario pay a
+# multi-second cold start, and calls that land late count as missing.
+export OLLAMA_KEEP_ALIVE="${OLLAMA_KEEP_ALIVE:-24h}"
+
 # Start the LLM server and pull the model.
 "$OLLAMA_BIN" serve > "$HERE/ollama.log" 2>&1 &
 OLLAMA_PID=$!
@@ -95,8 +99,20 @@ echo "== 5/8 Make the judge model configurable"
 sed -i 's/model="gpt-4o",/model=os.environ.get("FDB_JUDGE_MODEL", "gpt-4o"),/g' \
   evaluate_tool_calls.py evaluate_pass_rate.py
 
-echo "== 6/8 Model files + clean logs"
+echo "== 6/8 Model files + warm up + clean logs"
 python fdb_agent.py download-files
+# Load the LLM into VRAM and the Whisper weights into RAM before the benchmark starts,
+# so the first scenario is not penalised by a cold start.
+curl -sf "http://$OLLAMA_HOST/v1/chat/completions" \
+  -H 'Content-Type: application/json' \
+  -d "{\"model\":\"$LLM_MODEL\",\"messages\":[{\"role\":\"user\",\"content\":\"hi\"}],\"max_tokens\":1}" \
+  >/dev/null || echo "   (warm-up call failed; continuing)"
+python -c "
+import sys; sys.path.insert(0, '.')
+from local_models import LocalWhisperSTT, PiperTTS
+LocalWhisperSTT().prewarm(); PiperTTS()
+print('   STT + TTS warm')
+"
 rm -f /tmp/agent_tool_calls.log /tmp/agent_heartbeat.log /tmp/fdb_controller_trace.log
 
 echo "== 7/8 Start agent and run inference"

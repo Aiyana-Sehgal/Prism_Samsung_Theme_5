@@ -21,6 +21,7 @@ cp "$HERE/.env.local" .env.local
 export OLLAMA_HOST="${OLLAMA_HOST:-127.0.0.1:11434}"
 export OLLAMA_MODELS="$WORK/ollama/models"
 export FDB_PIPER_VOICE="${FDB_PIPER_VOICE:-$HERE/agent/piper/en_US-amy-medium.onnx}"
+export OLLAMA_KEEP_ALIVE="${OLLAMA_KEEP_ALIVE:-24h}"
 OLLAMA_PID=""
 if ! curl -sf "http://$OLLAMA_HOST/api/version" >/dev/null; then
   "$WORK/ollama/bin/ollama" serve > "$HERE/ollama.log" 2>&1 &
@@ -46,6 +47,11 @@ for d in sorted(os.listdir("fdb_v3_data_released")):
         os.symlink(os.path.abspath(f"fdb_v3_data_released/{d}"), f"{sub}/{d}"); n += 1
 print(f"subset: {n} examples")
 PY
+
+# Warm the LLM so the first subset scenario is not penalised by a cold start.
+curl -sf "http://$OLLAMA_HOST/v1/chat/completions" -H 'Content-Type: application/json' \
+  -d "{\"model\":\"$LLM_MODEL\",\"messages\":[{\"role\":\"user\",\"content\":\"hi\"}],\"max_tokens\":1}" \
+  >/dev/null || true
 
 rm -f /tmp/agent_tool_calls.log /tmp/fdb_controller_trace.log
 python fdb_agent.py start > "$HERE/agent_$LABEL.log" 2>&1 & PID=$!
