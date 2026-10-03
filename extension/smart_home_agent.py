@@ -32,6 +32,12 @@ from livekit.agents import Agent, AgentServer, AgentSession, RunContext, llm  # 
 
 from controller import ToolController  # noqa: E402
 
+# Registered at import time so `download-files` fetches their weights; a lazy import
+# inside entrypoint() is too late and the turn detector then fails to initialise.
+from livekit.plugins import openai as _plugin_openai  # noqa: F401,E402
+from livekit.plugins import silero as _plugin_silero  # noqa: F401,E402
+from livekit.plugins import turn_detector as _plugin_turn_detector  # noqa: F401,E402
+
 load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env.local"))
 
 INITIAL_HOME = {

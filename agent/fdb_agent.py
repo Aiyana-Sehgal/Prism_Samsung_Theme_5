@@ -27,6 +27,15 @@ from livekit.agents import Agent, AgentServer, AgentSession, RunContext, llm, ro
 
 from controller import ToolController
 
+# Import the plugins at module level, not lazily inside build_pipeline(). `download-files`
+# only fetches weights for plugins that have registered themselves by the time the CLI
+# runs, and it never calls build_pipeline() -- so a lazy import leaves the turn detector
+# without its model files and every job then crashes on EnglishModel().
+# This also avoids the event-loop stall from importing the openai plugin on first use.
+from livekit.plugins import openai as _plugin_openai  # noqa: F401
+from livekit.plugins import silero as _plugin_silero  # noqa: F401
+from livekit.plugins import turn_detector as _plugin_turn_detector  # noqa: F401
+
 LATENCY_PROFILE = "instant"
 if "--latency" in sys.argv:
     i = sys.argv.index("--latency")
