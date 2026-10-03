@@ -118,12 +118,13 @@ curl -sf "http://$OLLAMA_HOST/v1/chat/completions" \
   -H 'Content-Type: application/json' \
   -d "{\"model\":\"$LLM_MODEL\",\"messages\":[{\"role\":\"user\",\"content\":\"hi\"}],\"max_tokens\":1}" \
   >/dev/null || echo "   (warm-up call failed; continuing)"
+# Warming is an optimisation, never a reason to abort the run.
 python -c "
 import sys; sys.path.insert(0, '.')
 from local_models import LocalWhisperSTT, PiperTTS
 LocalWhisperSTT().prewarm(); PiperTTS()
 print('   STT + TTS warm')
-"
+" || echo "   (warm-up skipped: $? - the agent will load models on first use)"
 rm -f /tmp/agent_tool_calls.log /tmp/agent_heartbeat.log /tmp/fdb_controller_trace.log
 
 echo "== 7/8 Start agent and run inference"

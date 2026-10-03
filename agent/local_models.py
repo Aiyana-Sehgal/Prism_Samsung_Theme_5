@@ -100,14 +100,21 @@ class LocalWhisperSTT(stt.STT):
 
         for mod_name in ("nvidia.cublas.lib", "nvidia.cudnn.lib"):
             try:
-                mod = __import__(mod_name, fromlist=["__file__"])
+                mod = __import__(mod_name, fromlist=["__path__"])
             except ImportError:
                 continue
-            for so in sorted(glob.glob(os.path.join(os.path.dirname(mod.__file__), "*.so*"))):
-                try:
-                    ctypes.CDLL(so, mode=ctypes.RTLD_GLOBAL)
-                except OSError:
-                    pass
+            # These are namespace packages: __file__ is None, so the directory has to
+            # come from __path__. Using __file__ here raised TypeError on a GPU host.
+            dirs = [d for d in list(getattr(mod, "__path__", None) or []) if d]
+            mod_file = getattr(mod, "__file__", None)
+            if mod_file:
+                dirs.append(os.path.dirname(mod_file))
+            for d in dirs:
+                for so in sorted(glob.glob(os.path.join(d, "*.so*"))):
+                    try:
+                        ctypes.CDLL(so, mode=ctypes.RTLD_GLOBAL)
+                    except OSError:
+                        pass
 
     def _load_model(self, force_cpu: bool = False):
         from faster_whisper import WhisperModel
