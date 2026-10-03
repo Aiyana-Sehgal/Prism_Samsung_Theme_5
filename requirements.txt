@@ -1,0 +1,21 @@
+# Agent runtime (pinned; imports verified against these versions)
+livekit-agents[openai,silero,turn-detector]==1.8.3
+livekit-plugins-openai==1.8.3
+livekit-plugins-silero==1.8.3
+livekit-plugins-turn-detector==1.8.3
+livekit[crypto]==1.1.18
+python-dotenv
+numpy
+# Local zero-cost models (no paid APIs at evaluation time).
+# faster-whisper: CTranslate2 Whisper, GPU when CUDA is usable, CPU int8 otherwise.
+# piper-tts: ONNX speech synthesis on CPU; its Python API is used, not the CLI.
+faster-whisper==1.2.1
+piper-tts==1.8.0
+# openai is kept as the OpenAI-compatible *client* for the local LLM server (Ollama),
+# and for the optional hosted comparison run (FDB_STACK=openai).
+openai==2.54.0
+# Benchmark harness (ASR for scoring, audio, data download)
+nemo_toolkit[asr]
+pydub
+ffmpeg-python
+gdown

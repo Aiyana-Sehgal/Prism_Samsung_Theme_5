@@ -1,0 +1,11 @@
+.env.local
+work/
+results/*/subset_*
+__pycache__/
+*.log
+# ...but the run logs that are part of the submission must be committed.
+!results/*.log
+# Downloaded by reproduce.sh (63 MB); not source.
+agent/piper/
+# Internal planning notes, not part of the deliverable.
+COWORK_CONTEXT.md
