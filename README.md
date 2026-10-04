@@ -1,4 +1,20 @@
-# Interruptible Voice Agent with a Tool Commit Gate (Theme 05)
+# Interruptible Voice Agents: When Timing Matters
+
+**Samsung PRISM GenAI Hackathon, 3rd Edition 2026–27 — Theme 05: Interruptible Real-Time Agents**
+**Team Knox**
+
+| Member | Email |
+|---|---|
+| Aiyana Sehgal | aiyanasehgal2123@gmail.com |
+| Srinjoyee Acharyya | srinjoyee.acharyya@gmail.com · sa3661@srmist.edu.in |
+| Simran Das | mailme.simrandas@gmail.com · sd2394@srmist.edu.in |
+
+📹 **Demo video (3–5 min):** https://youtu.be/yLMXs2C_6Kc
+📊 **Presentation:** [`docs/Interruptible-Voice-Agents.pptx`](docs/Interruptible-Voice-Agents.pptx)
+🏷️ **Tag:** `PRISM_GENAI_HACKATHON_Y2026`
+🤖 **AI disclosure:** [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md)
+
+---
 
 A LiveKit voice agent for Full-Duplex-Bench v3. The LLM only *proposes* tool calls; a small
 coordination layer (`agent/controller.py`) decides whether each call actually runs. This stops the
