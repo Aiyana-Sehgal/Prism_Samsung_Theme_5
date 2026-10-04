@@ -5,7 +5,7 @@
 
 | Member | Email |
 |---|---|
-| Aiyana Sehgal | aiyanasehgal2123@gmail.com |
+| Aiyana Sehgal | aiyanasehgal2123@gmail.com · as6671@srmist.edu.in |
 | Srinjoyee Acharyya | srinjoyee.acharyya@gmail.com · sa3661@srmist.edu.in |
 | Simran Das | mailme.simrandas@gmail.com · sd2394@srmist.edu.in |
 
